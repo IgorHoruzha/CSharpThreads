@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam_stadium_threads", "Exam_stadium_threads\Exam_stadium_threads.csproj", "{670C72BC-FAD5-424B-970D-4BF821816EAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{670C72BC-FAD5-424B-970D-4BF821816EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{670C72BC-FAD5-424B-970D-4BF821816EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{670C72BC-FAD5-424B-970D-4BF821816EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{670C72BC-FAD5-424B-970D-4BF821816EAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63B1880C-16B3-4343-96D7-9C271A71DC26}
+	EndGlobalSection
+EndGlobal

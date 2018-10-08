@@ -1,0 +1,142 @@
+﻿<Window x:Class="Exam_stadium_threads.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exam_stadium_threads"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="622.262" Width="1306.029">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.074*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.35*"></ColumnDefinition>
+            <ColumnDefinition Width="0.35*"></ColumnDefinition>
+            <ColumnDefinition Width="0.35*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.ColumnSpan="4" >         
+            
+            <MenuItem Header="Settings" Click="MenuItem_Click" ></MenuItem>
+        </Menu>
+        <!-- Column 1-->
+        <DockPanel Grid.Row="1"  >
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock>Seats in the stadium.</TextBlock>
+                <xctk:IntegerUpDown Name="myUpDownControl" Minimum="1" Maximum="20000" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.CountPlaces, Mode=TwoWay}" ValueChanged="myUpDownControl_ValueChanged"/>
+                <Button Name="btnStart" Click="btnStart_Click">Start</Button>
+                <Button Name="btnStop" Click="btnStop_Click">Stop</Button>
+            </StackPanel>
+            <Expander  Header="Статистика">
+
+                <ScrollViewer  VerticalScrollBarVisibility="Auto" >
+                    <StackPanel  >
+                        <DockPanel LastChildFill="False" >
+                            <TextBlock DockPanel.Dock="Left">Busy places</TextBlock>
+                            <TextBlock DockPanel.Dock="Right" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.BusyPlaces, Mode=TwoWay}"/>
+                        </DockPanel>
+                        <DockPanel LastChildFill="False" >
+                            <TextBlock DockPanel.Dock="Left">Free places</TextBlock>
+                            <TextBlock DockPanel.Dock="Right"  Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.FreePlaces, Mode=TwoWay}"/> 
+                        </DockPanel>
+                        <StackPanel   Name="spStadiumStatistic">
+                            
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Expander>
+
+        </DockPanel>
+
+        <!-- Column 2-->
+        <DockPanel Grid.Row="1"  Grid.Column="1">
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap">The queue of fans in front of the entrance.</TextBlock>
+            <ListBox Name="lbQueueOfFans" BorderBrush="Gray" BorderThickness="1"  ScrollViewer.HorizontalScrollBarVisibility="Auto" DockPanel.Dock="Top" ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.EntranceStadiumQueue, Mode=TwoWay}">
+                
+            </ListBox>
+        </DockPanel>
+
+        <!-- Column 3-->
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "0.30*" ></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0">The queue of fans in front of the sectors</TextBlock>
+            <DockPanel  Grid.Row="1">
+            <TextBlock DockPanel.Dock="Top">The queue 1</TextBlock>
+                <ListBox DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1"  ScrollViewer.HorizontalScrollBarVisibility="Auto"  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.EntranceSectorsQueue[0], Mode=TwoWay}"/>
+            </DockPanel>
+            <DockPanel  Grid.Row="2">
+                <TextBlock DockPanel.Dock="Top">The queue 2</TextBlock>
+                <ListBox  DockPanel.Dock="Top" ScrollViewer.HorizontalScrollBarVisibility="Auto"   BorderBrush="Gray" BorderThickness="1" ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.EntranceSectorsQueue[1], Mode=TwoWay}"/>
+            </DockPanel>
+            <DockPanel  Grid.Row="3">
+            <TextBlock DockPanel.Dock="Top">The queue 3</TextBlock>
+                <ListBox DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1"   ScrollViewer.HorizontalScrollBarVisibility="Auto"  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.EntranceSectorsQueue[2], Mode=TwoWay}"/>
+            </DockPanel>
+            <DockPanel  Grid.Row="4">
+                <TextBlock DockPanel.Dock="Top">The queue 4</TextBlock>
+                <ListBox DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1"   ScrollViewer.HorizontalScrollBarVisibility="Auto"   ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.EntranceSectorsQueue[3], Mode=TwoWay}"/>
+            </DockPanel>
+        </Grid>
+        
+        <!-- Column 4-->
+        <Grid  Grid.Row="1"  Grid.Column="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "0.30*" ></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Stadium"  Grid.ColumnSpan="3"  TextAlignment="Center" FontSize="30" VerticalAlignment="Center" />
+
+            <Image  Grid.Column="1" Grid.Row="2" Source="http://www.nsktv.ru/upload/resize_cache/iblock/522/630_420_1/52251dcb5b139481dca0a2ae4a0b99a0.jpg" ></Image>
+            
+            <DockPanel  Grid.Column="0"  Grid.Row="1">
+                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">Сектор 0</TextBlock>
+                <xctk:CheckListBox   Name="lbSector0"  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.SectorsPlaces[0].FansInSector, Mode=TwoWay}" />
+            </DockPanel>
+            
+            <DockPanel  Grid.Column="1"  Grid.Row="1">
+                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">Сектор 1</TextBlock>
+                <xctk:CheckListBox  Name="lbSector1"  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.SectorsPlaces[1].FansInSector, Mode=TwoWay}"/>
+            </DockPanel>
+            
+            <DockPanel  Grid.Column="2"  Grid.Row="1">
+                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">Сектор 2</TextBlock>
+                <xctk:CheckListBox  Name="lbSector2"  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.SectorsPlaces[2].FansInSector, Mode=TwoWay}"/>
+            </DockPanel>
+
+            <DockPanel  Grid.Column="0"  Grid.Row="3">
+                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">Сектор 3</TextBlock>
+                <xctk:CheckListBox  Name="lbSector3"  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.SectorsPlaces[3].FansInSector, Mode=TwoWay}"/>
+            </DockPanel>
+            
+            <DockPanel  Grid.Column="1"  Grid.Row="3">
+                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">Сектор 4</TextBlock>
+                <xctk:CheckListBox  Name="lbSector4"  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.SectorsPlaces[4].FansInSector, Mode=TwoWay}"/>
+            </DockPanel>
+
+            <DockPanel  Grid.Column="2"  Grid.Row="3">
+                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">Сектор 5</TextBlock>
+                <xctk:CheckListBox  Name="lbSector5"  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=CurrStadium.SectorsPlaces[5].FansInSector, Mode=TwoWay}"/>
+            </DockPanel>
+
+        </Grid>
+    
+
+    </Grid>
+</Window>
